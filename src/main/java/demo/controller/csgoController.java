@@ -28,8 +28,12 @@ public class csgoController {
 //    条件查询：通过id查询队伍信息
     @RequestMapping("/getCSGOTeamById")
     public CSGO_team getCSGOTeamById(int id){
-        CSGO_team csgo_team = csgoMapper.selectById(id);
-        return csgo_team ;
+        if(id >0 && id <= csgoMapper.selectCount(null)){
+            CSGO_team csgo_team = csgoMapper.selectById(id);
+            return csgo_team ;
+        }
+        CSGO_team csgo_team1 = new CSGO_team();
+        return csgo_team1;
     }
 
 //    修改队伍数据
